@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Конвертер Валют</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="greeting" id="greeting">Добрый день!</div>
+            <div class="loading-text">Загрузка конвертера валют...</div>
+            <div class="loading-spinner"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main-container" id="mainContainer">
+        <h1 class="title">💱 КОНВЕРТЕР</h1>
+        <div class="input-group">
+            <label class="input-label">СУММА</label>
+            <input type="number" class="amount-input" id="amount" value="1" step="0.01" min="0">
+        </div>
+        <div class="currencies-container">
+            <div class="currency-box" onclick="openCurrencyModal('from')">
+                <div class="currency-flag" id="from-flag">🇺🇸</div>
+                <div class="currency-code" id="from-code">USD</div>
+                <div class="currency-name" id="from-name">Доллар США</div>
+            </div>
+            <div class="arrow-container">
+                <button class="swap-btn" onclick="swapCurrencies()">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+            </div>
+            <div class="currency-box" onclick="openCurrencyModal('to')">
+                <div class="currency-flag" id="to-flag">🇪🇺</div>
+                <div class="currency-code" id="to-code">EUR</div>
+                <div class="currency-name" id="to-name">Евро</div>
+            </div>
+        </div>
+        <div class="result-box">
+            <div class="result-amount" id="result-amount">0.92</div>
+            <div class="result-text" id="result-text">EUR</div>
+        </div>
+        <button class="convert-btn pulse" onclick="convert()">КОНВЕРТИРОВАТЬ</button>
+        <div class="loading" id="loading">Загрузка курсов</div>
+        <div class="rate-info" id="rate-info">Курс обновлен: сегодня</div>
+    </div>
+    <div id="currencyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Выберите валюту</div>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <input type="text" class="search-box" id="searchCurrency" placeholder="Поиск валюты..." oninput="filterCurrencies()">
+            <div id="currencyList"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
